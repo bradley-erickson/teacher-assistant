@@ -1,0 +1,108 @@
+.default {
+    background-color: #EBE6E0;
+    color: #0e2dce;
+    height: 100vh;
+    font-size: 36px;
+    width: 70vh;
+    height: 80vh;
+    display: table;
+    margin: 0 auto;
+    border: 1px solid black;
+}
+
+.header {
+    color: white;
+    height: 10vh;
+    font-size: 36px;
+    display: flex;
+    padding: 0px 10px 0px 10px;
+    justify-content: space-between;
+    border-bottom: 2px solid #0e2dce;
+}
+
+.header-title {
+    padding-bottom: 8px;
+    align-self: center;
+}
+
+.header-button {
+    height: 40px;
+    align-self: center;
+    padding-bottom: 8px;
+}
+
+.body-header {
+    font-size: 30px;
+}
+
+.body-component {
+    font-size: 24px;
+    height: 60vh;
+    padding: 0px 10px 0px 10px;
+}
+
+.welcome-main-header {
+    background-color: #0e2dce;
+}
+
+.addition-header {
+    background-color: #ce0e2d;
+}
+
+.subtraction-header {
+    background-color: #2dce0e;
+}
+
+.color-wrong-red {
+    color: red;
+}
+
+.color-correct-green {
+    color: green;
+}
+
+.btn {
+    font-size: 24px;
+    background-color: #EBE6E0;
+    color: #0e2dce;
+    border: 2px solid #0e2dce;
+    border-radius: 5px;
+}
+
+.btn:hover {
+    background-color: #bcb8b3;
+}
+
+.btn.disabled {
+    color: #7f7fbf;
+    border-color: #7f7fbf;
+}
+
+.form-control {
+    font-size: 24px;
+    background-color: #EBE6E0;
+    color: #0e2dce;
+    border: 2px solid #0e2dce;
+    border-radius: 5px;
+    padding-left: 5px;
+}
+
+.practice-input {
+    width: 50px;
+}
+
+.top-margin {
+    margin-top: 5px;
+}
+
+.left-margin {
+    margin-left: 5px;
+}
+
+.right-margin {
+    margin-right: 5px;
+}
+
+.bottom-margin {
+    margin-bottom: 5px;
+}
