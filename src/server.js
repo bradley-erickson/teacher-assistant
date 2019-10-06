@@ -10,7 +10,7 @@ const student = require('./models/student');
 app.use(cors());
 app.use(express.json());
 
-mongoose.connect("mongodb+srv://root:12345678hey@teacherassistant-zmtpu.gcp.mongodb.net/test?retryWrites=true&w=majority", { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect("mongodb+srv://root:12345678hey@teacherassistant-zmtpu.gcp.mongodb.net/CompuTutor?retryWrites=true&w=majority", { useNewUrlParser: true, useUnifiedTopology: true });
 const connection = mongoose.connection;
 
 connection.once('open', function() {
@@ -27,7 +27,9 @@ app.get('/data', function(req, res, next) {
 
 var someone = new student({
     fname:'Johnny!',
-    lname:'Apple'
+    lname:'Apple',
+    username:'Catz',
+    password:'yoyo'
 });
 
 someone.save();
