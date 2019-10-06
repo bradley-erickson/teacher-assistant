@@ -28,7 +28,7 @@ class SubtractionBackground extends Component {
                     Where <i>a</i> and <i>b</i> are numbers and <i>c</i> is the difference.
                     Click 'Next' to look at some examples
                 </div>
-                <div className="top-margin">
+                <div>
                     <Link to="/subtraction/example">
                         <Button onClick={this.nextPage}>
                             Next

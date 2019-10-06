@@ -1,41 +1,47 @@
 import React, { Component } from 'react';
 import { Input, Button } from 'reactstrap';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
-import Header from './shared/header.js'
+import { Redirect } from 'react-router-dom';
+import { checkLogin } from './helpers/database-helpers.js';
+import Header from './shared/header.js';
 
 class WelcomeScreen extends Component {
     constructor(props) {
         super(props);
-        this.inputRef = React.createRef();
-        this.onStart = this.onStart.bind(this);
+        this.usernameRef = React.createRef();
+        this.passwordRef = React.createRef();
+        this.confirmLogin = React.createRef();
+        this.login = this.login.bind(this);
         this.state = {
-            studentName: ''
+            username: '',
+            password: '',
+            login: false
         };
     }
 
-    onStart() {
-        this.props.onStart(this.state.studentName);
+    login() {
+        const { username, password } = this.state;
+        const login = checkLogin(username, password);
+        this.setState({ login }); 
     }
 
     render() {
         return (
+
             <div>
                 <Header title="Welcome" className="welcome-main-header">
                     <span style={{ width: '10px' }} />
                 </Header>
                 <div className="body-component">
-                    This is the Math Teacher Assistant!
+                    Welcome to the CompuTutor!
                     <br />
-                    Please input your name and click 'Begin'
-                    <br />
-                    <Input className="top-margin bottom-margin" placeholder="Name" ref={this.inputRef} onChange={e => this.setState({ studentName: e.target.value })}/>
-                    <br />
-                    <Link to="/menu">
-                        <Button onClick={this.onStart}>
-                            Begin
-                        </Button>
-                    </Link>
+                    Please Login
+                    <Input placeholder="Name" ref={this.usernameRef} onChange={e => this.setState({ username: e.target.value })} />
+                    <Input placeholder="Password" ref={this.passwordRef} onChange={e => this.setState({ password: e.target.value })} />
+                    <Button onClick={this.login}>
+                        Begin
+                    </Button>
+                    {this.state.login && <Redirect push to="/menu" />}
                 </div>
             </div>
         );

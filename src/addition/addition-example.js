@@ -66,7 +66,7 @@ class AdditionExample extends Component {
                     <b className="body-header">Example:</b>
                     <br />
                     Click the button to show the steps for this basic example: 
-                    <Button onClick={this.showBasicExample} className="top-margin bottom-margin">
+                    <Button onClick={this.showBasicExample}>
                         Show steps
                     </Button>
                     <br />
@@ -74,7 +74,7 @@ class AdditionExample extends Component {
                     <div id="basicExample"></div>
                     <br />
                     Click the button to show the steps for this complex example: 
-                    <Button onClick={this.showComplexExample} className="top-margin bottom-margin">
+                    <Button onClick={this.showComplexExample}>
                         Show steps
                     </Button>
                     <br />

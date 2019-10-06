@@ -73,11 +73,11 @@ class SubtractionPractice extends Component {
             text = `${name} has ${questions[4][0]} ${item}. They lose ${questions[4][1]}. How many ${item} does ${name} have now? `
         }
         return (
-            <div className="top-margin">
+            <div>
                 {text}
-                <Input className="practice-input" onChange={e => this.updateQuestionAnswer(num, e.target.value)}/>
+                <Input onChange={e => this.updateQuestionAnswer(num, e.target.value)}/>
                 {submitted &&
-                    <i className={correct[num] ? "left-margin fa fa-check color-correct-green" : "left-margin fa fa-times color-wrong-red"} />
+                    <i className={correct[num] ? "fa fa-check color-correct-green" : "fa fa-times color-wrong-red"} />
                 }
             </div>
         );
@@ -97,7 +97,7 @@ class SubtractionPractice extends Component {
                     {this.renderQuestion(3, true)}
                     {this.renderQuestion(4, false)}
                 </div>
-                <Button onClick={this.checkAnswer} className="right-margin top-margin">
+                <Button onClick={this.checkAnswer}>
                     Submit
                 </Button>
                 <Link to="/subtraction/end">

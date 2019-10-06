@@ -5,6 +5,7 @@ import MainMenu from './main-menu.js';
 import './App.css';
 import AdditionModule from './addition/addition-module.js';
 import SubtractionModule from './subtraction/subtraction-module.js';
+import { getUsers } from './helpers/database-helpers.js';
 
 class App extends Component {
     
@@ -17,18 +18,14 @@ class App extends Component {
         }
     }
 
+    componentDidMount() {
+        this.setState({ users: getUsers() });
+    }
+
     onStart(name) {
         if (name) {
             this.setState({ name });
         }
-    }
-    
-    
-    componentDidMount(){
-        fetch('/data')
-            .then(res => res.json())
-            .then(users => this.setState({users}));
-
     }
 
     render() {
@@ -37,15 +34,6 @@ class App extends Component {
         console.log(users);
         return (
             <div className="default">
-            
-                <div className="something">
-                    <ul>
-                    {this.state.users.map(user => 
-                        <li key={user.id}>{user.username}</li>
-                    )}
-                    </ul>
-                </div>
-            
                 <HashRouter basename='/'>
                     <Route exact path="/" component={() => <WelcomeScreen onStart={this.onStart} />} />
                     <Route exact path="/menu" component={() => <MainMenu name={name} />} />

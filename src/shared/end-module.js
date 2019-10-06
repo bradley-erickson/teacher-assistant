@@ -25,8 +25,8 @@ class EndModule extends Component {
                     You completed the {_.upperFirst(moduleType)} module in {submission} submissions!
                 </div>
                 <Link to="/menu">
-                    <Button className="right-margin top-margin">
-                        <i className="fa fa-home right-margin" />
+                    <Button>
+                        <i className="fa fa-home" />
                         Menu
                     </Button>
                 </Link>

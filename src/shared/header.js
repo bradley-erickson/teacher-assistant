@@ -6,7 +6,7 @@ const Header = (props) => {
     return (
         <div className={`header ${className}`}>
             <span className="header-title">
-                {icon && <i className={`fa ${icon} right-margin`}/>}
+                {icon && <i className={`fa ${icon}`}/>}
                 {title}
             </span>
             <span className="header-button">

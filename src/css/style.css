@@ -1,13 +1,8 @@
 .default {
     background-color: #EBE6E0;
     color: #0e2dce;
-    height: 100vh;
     font-size: 36px;
-    width: 70vh;
-    height: 80vh;
-    display: table;
     margin: 0 auto;
-    border: 1px solid black;
 }
 
 .header {
@@ -37,8 +32,6 @@
 
 .body-component {
     font-size: 24px;
-    height: 60vh;
-    padding: 0px 10px 0px 10px;
 }
 
 .welcome-main-header {
@@ -59,50 +52,4 @@
 
 .color-correct-green {
     color: green;
-}
-
-.btn {
-    font-size: 24px;
-    background-color: #EBE6E0;
-    color: #0e2dce;
-    border: 2px solid #0e2dce;
-    border-radius: 5px;
-}
-
-.btn:hover {
-    background-color: #bcb8b3;
-}
-
-.btn.disabled {
-    color: #7f7fbf;
-    border-color: #7f7fbf;
-}
-
-.form-control {
-    font-size: 24px;
-    background-color: #EBE6E0;
-    color: #0e2dce;
-    border: 2px solid #0e2dce;
-    border-radius: 5px;
-    padding-left: 5px;
-}
-
-.practice-input {
-    width: 50px;
-}
-
-.top-margin {
-    margin-top: 5px;
-}
-
-.left-margin {
-    margin-left: 5px;
-}
-
-.right-margin {
-    margin-right: 5px;
-}
-
-.bottom-margin {
-    margin-bottom: 5px;
 }
