@@ -5,7 +5,8 @@ import MainMenu from './main-menu.js';
 import './App.css';
 import AdditionModule from './addition/addition-module.js';
 import SubtractionModule from './subtraction/subtraction-module.js';
-import { getUsers } from './helpers/database-helpers.js';
+import { getStudents } from './helpers/database-helpers.js';
+import { getStudentByName } from './helpers/database-helpers.js';
 
 class App extends Component {
     
@@ -19,19 +20,21 @@ class App extends Component {
     }
 
     componentDidMount() {
-        this.setState({ users: getUsers() });
+        this.setState({ users: getStudentByName('Johnny!','Apple') });
     }
 
     onStart(name) {
         if (name) {
-            this.setState({ name });
+            this.setState({ name: name });
         }
     }
 
     render() {
         const { name, users } = this.state;
         const routes = ['background', 'example', 'practice', 'end'];
+        
         console.log(users);
+        
         return (
             <div className="default">
                 <HashRouter basename='/'>
