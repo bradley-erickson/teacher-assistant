@@ -1,6 +1,6 @@
 .default {
-    background-color: #EBE6E0;
-    color: #0e2dce;
+    background-color: #F69454;
+    color: white;
     font-size: 36px;
     margin: 0 auto;
 }
@@ -12,11 +12,11 @@
     display: flex;
     padding: 0px 10px 0px 10px;
     justify-content: space-between;
-    border-bottom: 2px solid #0e2dce;
+    border-bottom: 2px solid white;
 }
 
 .header-title {
-    padding-bottom: 8px;
+    padding-bottom: 12px;
     align-self: center;
 }
 
@@ -35,7 +35,7 @@
 }
 
 .welcome-main-header {
-    background-color: #0e2dce;
+    background-color: #EE693F;
 }
 
 .addition-header {
@@ -52,4 +52,11 @@
 
 .color-correct-green {
     color: green;
+}
+
+#reset-button, #addition-button, #subtraction-button{
+    color:white;
+    background-color: #739F3D;
+    border: 2px solid white;
+
 }

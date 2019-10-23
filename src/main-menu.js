@@ -9,7 +9,7 @@ const MainMenu = (props) => {
         <div>
             <Header title="Main Menu" icon="fa-home" className="welcome-main-header">
                 <Link to="/">
-                    <Button>
+                    <Button id="reset-button" className="reset-button">
                         Reset
                     </Button>
                 </Link>
@@ -21,14 +21,14 @@ const MainMenu = (props) => {
                 <br />
                 <div>
                     <Link to="/addition/background">
-                        <Button>
-                            <i className="fa fa-plus" />
+                        <Button id="addition-button">
+                            <i className="fa fa-plus"/>
                             Addition
                         </Button>
                     </Link>
                     <Link to="/subtraction/background">
-                        <Button>
-                            <i className="fa fa-minus" />
+                        <Button id="subtraction-button">
+                            <i className="fa fa-minus"  />
                             Subtraction
                         </Button>
                     </Link>
