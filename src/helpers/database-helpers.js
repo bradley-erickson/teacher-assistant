@@ -2,7 +2,7 @@ export function checkLogin(username, password) {
     let person = [];
     fetch('/student', {method: 'post',
                         headers: {'Accept': 'application/json, text/plain, */*','Content-Type': 'application/json'},
-                        body: JSON.stringify({fname: fname, lname: lname})
+                        body: JSON.stringify({})
                       })
         .then(res => res.json())
         .then(student => person.push(student));
