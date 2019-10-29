@@ -7,6 +7,7 @@ import AdditionModule from './addition/addition-module.js';
 import SubtractionModule from './subtraction/subtraction-module.js';
 import { getUsers } from './helpers/database-helpers.js';
 
+// adding a comment here
 class App extends Component {
     
    constructor(props) {
