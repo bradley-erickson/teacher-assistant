@@ -12,6 +12,15 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.<br>
 You will also see any lint errors in the console.
 
+### `nodemon server.js`
+
+Must be in src directory.<br>
+Runs the server in development mode.<br>
+Open [http://localhost:4000](http://localhost:4000) to view it in the browser.
+Currently no routing for server so no user interface.
+
+You will also see connection to database in console.
+
 ### `npm test`
 
 Launches the test runner in the interactive watch mode.<br>
