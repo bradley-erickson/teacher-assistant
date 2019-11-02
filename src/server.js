@@ -28,22 +28,48 @@ app.listen(PORT, function() {
     console.log("Server is running on Port: " + PORT);
 });
 
-app.post('/student', function(req, res, next) {
-    if(req.body.fname && req.body.lname){
-        student.find({fname:req.body.fname, lname:req.body.lname})
-            .then(students => res.json(students))
-            .catch(err => res.status(400).json('Error '+ err));
-    }
-    else{
-        student.find()
-        .then(students => res.json(students))
-        .catch(err => res.status(400).json('Error '+ err));
+app.post('/login', function(req, res, next) {
+    
+    if(req.body.username && req.body.password){
+        username = req.body.username;
+        password = req.body.password;
+        student.findOne({ username: username , password: password}, (err, student) => {
+            if(student == null){
+                console.log("no student");
+            }
+            else{
+                return res.json({type:"student",info:student});
+            }
+        });
+        teacher.findOne({ username: username , password: password}, (err, teacher) => {
+            if(teacher == null){
+                console.log("no teacher");
+            }
+            else{
+                return res.json({type:"teacher",info:teacher});
+            }
+        });
+        admin.findOne({ username: username , password: password}, (err, admin) => {
+            if(admin == null){
+                console.log("no admin");
+            }
+            else{
+                return res.json({type:"admin",info:admin});
+            }
+        });
+        
     }
 });
 
-app.get('/teacher', function(req, res, next) {
+app.post('/teacher', function(req, res, next) {
     teacher.find()
         .then(teachers => res.json(teachers))
+        .catch(err => res.status(400).json('Error '+ err));
+});
+
+app.post('/student', function(req, res, next) {
+    student.find()
+        .then(students => res.json(students))
         .catch(err => res.status(400).json('Error '+ err));
 });
 
