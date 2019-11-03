@@ -7,6 +7,7 @@ import AdditionModule from './addition/addition-module.js';
 import SubtractionModule from './subtraction/subtraction-module.js';
 import { getStudents } from './helpers/database-helpers.js';
 import { getStudentByName } from './helpers/database-helpers.js';
+import { checkLogin } from './helpers/database-helpers.js';
 
 class App extends Component {
     
@@ -21,6 +22,7 @@ class App extends Component {
 
     componentDidMount() {
         this.setState({ users: getStudentByName('Johnny!','Apple') });
+        console.log(checkLogin("Catz","yoyo"));
     }
 
     onStart(name) {
