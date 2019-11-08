@@ -5,7 +5,7 @@ import MainMenu from './main-menu.js';
 import './App.css';
 import AdditionModule from './addition/addition-module.js';
 import SubtractionModule from './subtraction/subtraction-module.js';
-import { checkLogin,insertPerson,getStudentByName,insertScore,insertClass,insertObject } from './helpers/database-helpers.js';
+import { checkLogin, insertPerson, getStudentByName, insertScore, insertClass, insertObject } from './helpers/database-helpers.js';
 
 class App extends Component {
     
