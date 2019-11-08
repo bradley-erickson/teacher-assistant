@@ -61,6 +61,150 @@ app.post('/login', function(req, res, next) {
     }
 });
 
+app.post('/insertPerson', function(req, res, next) {
+    let result = false;
+    if(req.body.userID && req.body.type && req.body.fname,req.body.lname,req.body.uname,req.body.pwd){
+        userId = req.body.userID;
+        type = req.body.type;
+        fname = req.body.fname;
+        lname = req.body.lname;
+        username = req.body.uname;
+        password = req.body.pwd;
+        
+        switch(type) {
+            case "student":
+                let Student = new student({fname:fname,lname:lname,username:username,password:password});
+                Student.save(function (err, Student) {
+                    if (err) {
+                        result = false;
+                        return console.error(err);
+                    }
+                    else{
+                        result = true;
+                    }
+                });
+            break;
+            case "teacher":
+                let Teacher = new teacher({fname:fname,lname:lname,username:username,password:password});
+                Teacher.save(function (err, Teacher) {
+                    if (err) {
+                        result = false;
+                        return console.error(err);
+                    }
+                    else{
+                        result = true;
+                    }
+                });
+            break;
+            case "admin":
+                let Admin = new admin({fname:fname,lname:lname,username:username,password:password});
+                Admin.save(function (err, Admin) {
+                    if (err) {
+                        result = false;
+                        return console.error(err);
+                    }
+                    else{
+                        result = true;
+                    }
+                });
+            break;
+            default:
+            break;
+        
+        }
+        
+    }
+    if(result){
+            res.status(200).send({"result": true});
+        }
+        else{
+            res.status(200).send({"result": false});
+        }
+    
+});
+
+app.post('/insertScore', function(req, res, next) {
+    result = false;
+    if(req.body.studentID && req.body.classID && req.body.attempts,req.body.correct,req.body.dateStamp){
+        
+        var studentID = req.body.studentID;
+        var classID = req.body.classID;
+        var attempts = req.body.attempts;
+        var correct = req.body.correct;
+        var dateStamp = req.body.dateStamp;
+        
+        let Score = new score({studentID: studentID, classID:classID,attempts:attempts,correct:correct,dateStamp:dateStamp});
+        Score.save(function (err, Score) {
+            if (err){
+                result = false;
+                return console.error(err);
+            }
+            else{
+                result = true;
+            }
+        });
+        if(result){
+            res.status(200).send({"result": true});
+        }
+        else{
+            res.status(200).send({"result": false});
+        }
+    }
+});
+
+app.post('/insertClass', function(req, res, next) {
+    result = false;
+    if(req.body.teacherID && req.body.name && req.body.subject,req.body.difficulty){
+        
+        var teacherID = req.body.teacherID;
+        var name = req.body.name;
+        var subject = req.body.subject;
+        var difficulty = req.body.difficulty;
+        
+        let classT = new Class({teacherID: teacherID, name:name,subject:subject,difficulty:difficulty});
+        classT.save(function (err, Score) {
+            if (err){
+                result = false;
+                return console.error(err);
+            }
+            else{
+                result = true;
+            }
+        });
+        if(result){
+            res.status(200).send({"result": true});
+        }
+        else{
+            res.status(200).send({"result": false});
+        }
+    }
+});
+
+app.post('/insertObject', function(req, res, next) {
+    result = false;
+    if(req.body.object){
+        
+        var object = req.body.object;
+        
+        let Objects = new objects({object: object});
+        Objects.save(function (err, Score) {
+            if (err){
+                result = false;
+                return console.error(err);
+            }
+            else{
+                result = true;
+            }
+        });
+        if(result){
+            res.status(200).send({"result": true});
+        }
+        else{
+            res.status(200).send({"result": false});
+        }
+    }
+});
+
 app.post('/teacher', function(req, res, next) {
     teacher.find()
         .then(teachers => res.json(teachers))
