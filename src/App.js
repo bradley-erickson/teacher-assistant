@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
-import { HashRouter, Route } from 'react-router-dom';
-import WelcomeScreen from './welcome.js';
-import MainMenu from './main-menu.js';
+import { Switch, Route } from 'react-router-dom';
+import Login from './login.js';
+import Student from './user/students.js';
 import './App.css';
-import AdditionModule from './addition/addition-module.js';
-import SubtractionModule from './subtraction/subtraction-module.js';
-import { checkLogin, insertPerson, getStudentByName, insertScore, insertClass, insertObject } from './helpers/database-helpers.js';
 
 class App extends Component {
     
@@ -13,39 +10,25 @@ class App extends Component {
         super(props);
         this.onStart = this.onStart.bind(this);
         this.state = {
-            name: 'user',
-            users: []
+            user: {}
         }
     }
 
-    componentDidMount() {
-        this.setState({ users: getStudentByName('Johnny!','Apple') });
-        
-    }
-
-    onStart(name) {
-        if (name) {
-            this.setState({ name: name });
+    onStart(user) {
+        if (user) {
+            this.setState({ user });
         }
     }
 
     render() {
-        const { name, users } = this.state;
-        const routes = ['background', 'example', 'practice', 'end'];
-        
-        console.log(users);
-        
+        const { user } = this.state;
         return (
-            <div className="default">
-                <HashRouter basename='/'>
-                    <Route exact path="/" component={() => <WelcomeScreen onStart={this.onStart} />} />
-                    <Route exact path="/menu" component={() => <MainMenu name={name} />} />
-                    <Route exact path="/addition/:type" component={() => <AdditionModule data={routes} name={name} />} />
-                    <Route exact path="/subtraction/:type" component={() => <SubtractionModule data={routes} name={name} />} />
-                </HashRouter>
-            </div>
-                
-            
+            <main className="default">
+                <Switch>
+                    <Route exact path='/' component={() => <Login onStart={this.onStart}/>}/>
+                    <Route path='/student' component={() => <Student user={user} />}/>
+                </Switch>
+            </main>
         );
     }
 }

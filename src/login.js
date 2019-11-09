@@ -5,7 +5,7 @@ import { Redirect } from 'react-router-dom';
 import { checkLogin } from './helpers/database-helpers.js';
 import Header from './shared/header.js';
 
-class WelcomeScreen extends Component {
+class Login extends Component {
     constructor(props) {
         super(props);
         this.usernameRef = React.createRef();
@@ -15,19 +15,24 @@ class WelcomeScreen extends Component {
         this.state = {
             username: '',
             password: '',
-            login: false
+            pushTo: '/',
+            redirect: false
         };
     }
 
-    login() {
+    async login() {
         const { username, password } = this.state;
-        const login = checkLogin(username, password);
-        this.setState({ login }); 
+        const login = await checkLogin(username, password);
+        const user = login[0]
+        if (user) {
+            this.setState({ pushTo: `/${user.type}`, redirect: true });
+            this.props.onStart(user);
+        }
     }
 
     render() {
+        const { pushTo, redirect } = this.state;
         return (
-
             <div>
                 <Header title="Welcome" className="welcome-main-header">
                     <span style={{ width: '10px' }} />
@@ -41,15 +46,15 @@ class WelcomeScreen extends Component {
                     <Button onClick={this.login}>
                         Begin
                     </Button>
-                    {this.state.login && <Redirect push to="/menu" />}
+                    {redirect && <Redirect to={pushTo} />}
                 </div>
             </div>
         );
     }
 }
 
-WelcomeScreen.propTypes = {
+Login.propTypes = {
     onStart: PropTypes.func.isRequired
 }
 
-export default WelcomeScreen;
+export default Login;
