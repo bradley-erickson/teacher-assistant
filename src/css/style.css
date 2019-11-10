@@ -1,3 +1,7 @@
+body > #root > main {
+    height: 100vh;
+}
+
 .default {
     background-color: #F69454;
     color: white;
