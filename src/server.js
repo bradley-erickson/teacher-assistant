@@ -11,7 +11,6 @@ const score = require('./models/score');
 const objects = require('./models/objects');
 const message = require('./models/message');
 const Class = require('./models/class');
-const classroom = require('./models/classroom');
 const admin = require('./models/admin');
 
 app.use(cors());
@@ -61,10 +60,106 @@ app.post('/login', function(req, res, next) {
     }
 });
 
+app.post('/getMessages', function(req, res, next) {
+    
+    if(req.body.classID){
+        let classID = req.body.classID;
+        message.find({ classID: classID }, (err, messages) => {
+            if(messages == null){
+                console.log("no messages");
+            }
+            else{
+                return res.json({messages:messages});
+            }
+        });
+    }
+    else{
+        return false;
+    }
+});
+
+app.post('/getStudents', function(req, res, next) {
+    
+    if(req.body.classID){
+        let classID = req.body.classID;
+        student.find({ classID: classID }, (err, students) => {
+            if(students == null){
+                console.log("no students");
+            }
+            else{
+                return res.json({students:students});
+            }
+        });
+    }
+    else{
+        return false;
+    }
+});
+
+app.post('/getTeachers', function(req, res, next) {
+    
+    teacher.find((err, teachers) => {
+        if(teachers == null){
+            console.log("no teachers");
+        }
+        else{
+            return res.json({teachers:teachers});
+        }
+    });
+});
+
+app.post('/getObjects', function(req, res, next) {
+    
+    objects.find((err, object) => {
+        if(object == null){
+            console.log("no objects");
+        }
+        else{
+            return res.json({objects:object});
+        }
+    });
+});
+
+app.post('/getClass', function(req, res, next) {
+    
+    if(req.body.classID){
+        let classID = req.body.classID;
+        Class.findById(classID, (err, Classes) => {
+            if(Classes == null){
+                console.log("no Class with that ID");
+            }
+            else{
+                return res.json({class:Classes});
+            }
+        });
+    }
+    else{
+        return false;
+    }
+});
+
+app.post('/getStudentScores', function(req, res, next) {
+    
+    if(req.body.studentID){
+        let studentID = req.body.studentID;
+        score.find({studentID:studentID}, (err, scores) => {
+            if(scores == null){
+                console.log("no scores for that student");
+            }
+            else{
+                return res.json({scores:scores});
+            }
+        });
+    }
+    else{
+        return false;
+    }
+});
+
 app.post('/insertPerson', function(req, res, next) {
-    let result = false;
-    if(req.body.userID && req.body.type && req.body.fname,req.body.lname,req.body.uname,req.body.pwd){
-        userId = req.body.userID;
+    let result = true;
+    if(req.body.classID && req.body.type && req.body.fname,req.body.lname,req.body.uname,req.body.pwd){
+        classID = req.body.classID;
         type = req.body.type;
         fname = req.body.fname;
         lname = req.body.lname;
@@ -73,7 +168,7 @@ app.post('/insertPerson', function(req, res, next) {
         
         switch(type) {
             case "student":
-                let Student = new student({fname:fname,lname:lname,username:username,password:password});
+                let Student = new student({classID:classID,fname:fname,lname:lname,username:username,password:password});
                 Student.save(function (err, Student) {
                     if (err) {
                         result = false;
@@ -124,7 +219,7 @@ app.post('/insertPerson', function(req, res, next) {
 });
 
 app.post('/insertScore', function(req, res, next) {
-    result = false;
+    let result = true;
     if(req.body.studentID && req.body.classID && req.body.attempts,req.body.correct,req.body.dateStamp){
         
         var studentID = req.body.studentID;
@@ -153,7 +248,7 @@ app.post('/insertScore', function(req, res, next) {
 });
 
 app.post('/insertClass', function(req, res, next) {
-    result = false;
+    let result = true;
     if(req.body.teacherID && req.body.name && req.body.subject,req.body.difficulty){
         
         var teacherID = req.body.teacherID;
@@ -181,7 +276,7 @@ app.post('/insertClass', function(req, res, next) {
 });
 
 app.post('/insertObject', function(req, res, next) {
-    result = false;
+    let result = true;
     if(req.body.object){
         
         var object = req.body.object;
@@ -205,48 +300,32 @@ app.post('/insertObject', function(req, res, next) {
     }
 });
 
-app.post('/teacher', function(req, res, next) {
-    teacher.find()
-        .then(teachers => res.json(teachers))
-        .catch(err => res.status(400).json('Error '+ err));
+app.post('/insertMessage', function(req, res, next) {
+    let result = true;
+    if(req.body.author && req.body.classID && req.body.text){
+        
+        let author = req.body.author;
+        let classID = req.body.classID;
+        let text = req.body.text;
+        
+        let Message = new message({author:author,classID:classID,text:text});
+
+        Message.save(function (err, Score) {
+            if (err){
+                result = false;
+                return console.error(err);
+            }
+            else{
+                result = true;
+            }
+        });
+        if(result){
+            res.status(200).send({"result": true});
+        }
+        else{
+            res.status(200).send({"result": false});
+        }
+    }
 });
-
-app.post('/student', function(req, res, next) {
-    student.find()
-        .then(students => res.json(students))
-        .catch(err => res.status(400).json('Error '+ err));
-});
-
-app.get('/score', function(req, res, next) {
-    score.find()
-        .then(scores => res.json(scores))
-        .catch(err => res.status(400).json('Error '+ err));
-});
-
-app.get('/objects', function(req, res, next) {
-    objects.find()
-        .then(object => res.json(object))
-        .catch(err => res.status(400).json('Error '+ err));
-});
-
-app.get('/classroom', function(req, res, next) {
-    classroom.find()
-        .then(classrooms => res.json(classrooms))
-        .catch(err => res.status(400).json('Error '+ err));
-});
-
-app.get('/class', function(req, res, next) {
-    Class.find()
-        .then(classes => res.json(classes))
-        .catch(err => res.status(400).json('Error '+ err));
-});
-
-app.get('/admin', function(req, res, next) {
-    admin.find()
-        .then(admins => res.json(admins))
-        .catch(err => res.status(400).json('Error '+ err));
-});
-
-
 
 module.exports = app;
