@@ -16,7 +16,6 @@ function createQuestions(num, difficulty) {
 class AdditionPractice extends Component {
     constructor(props) {
         super(props);
-        this.nextPage = this.nextPage.bind(this);
         this.checkAnswer = this.checkAnswer.bind(this);
         this.state = {
             questions: createQuestions(5, props.difficulty),
@@ -56,10 +55,6 @@ class AdditionPractice extends Component {
         this.setState({ correct, submissions: submissions+1 });
     }
 
-    nextPage() {
-        this.props.click('end', this.state.submissions);
-    }
-
     renderQuestion(num, basic) {
         const { questions, correct, submissions, name, item } = this.state
         const submitted = submissions > 0;
@@ -97,8 +92,8 @@ class AdditionPractice extends Component {
                 <Button onClick={this.checkAnswer}>
                     Submit
                 </Button>
-                <Link to="/addition/end">
-                    <Button disabled={!correct.every(v => v === true)} onClick={this.nextPage}>
+                <Link to="/student/addition/submit">
+                    <Button disabled={!correct.every(v => v === true)}>
                         Next
                     </Button>
                 </Link>
@@ -113,7 +108,6 @@ class AdditionPractice extends Component {
 };
 
 AdditionPractice.propTypes = {
-    click: PropTypes.func.isRequired,
     difficulty: PropTypes.number.isRequired
 }
 

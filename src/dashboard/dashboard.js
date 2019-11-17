@@ -6,12 +6,9 @@ import Header from '../shared/header.js';
 import StudentActions from './student-actions.js';
 import TeacherActions from './teacher-actions.js';
 import AdminActions from './admin-actions.js';
+import MessageSection from './message-block.js';
 
 class Dashboard extends Component {
-    constructor(props) {
-        super(props);
-    }
-
     getContentsByType() {
         const { user } = this.props;
         switch(user.type) {
@@ -27,6 +24,7 @@ class Dashboard extends Component {
     }
 
     render() {
+        const { user } = this.props;
         return (
             <div>
                 <Header title="Main Menu" icon="fa-home" className="welcome-main-header">
@@ -37,26 +35,7 @@ class Dashboard extends Component {
                     </Link>
                 </Header>
                 { this.getContentsByType() }
-                <div className="body-component">
-                    Hello!
-                    <br />
-                    What do you need help with?
-                    <br />
-                    <div>
-                        <Link to="/addition/background">
-                            <Button id="addition-button">
-                                <i className="fa fa-plus"/>
-                                Addition
-                            </Button>
-                        </Link>
-                        <Link to="/subtraction/background">
-                            <Button id="subtraction-button">
-                                <i className="fa fa-minus"  />
-                                Subtraction
-                            </Button>
-                        </Link>
-                    </div>
-                </div>
+                {user.info && <MessageSection classId={user.info.classID} />}
             </div>
         );
     }

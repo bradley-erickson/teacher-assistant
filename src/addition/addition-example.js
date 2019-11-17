@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Button } from 'reactstrap';
 import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import { names } from '../constants/names.js';
 import { items } from '../constants/items.js';
 
@@ -19,7 +18,6 @@ function getTalliesText(num, ran1) {
 class AdditionExample extends Component {
     constructor(props) {
         super(props);
-        this.nextPage = this.nextPage.bind(this);
         this.showBasicExample = this.showBasicExample.bind(this);
         this.showComplexExample = this.showComplexExample.bind(this);
         this.state = {
@@ -30,10 +28,6 @@ class AdditionExample extends Component {
             name: names[Math.floor(Math.random() * names.length)],
             item: items[Math.floor(Math.random() * items.length)]
         };
-    }
-
-    nextPage() {
-        this.props.click('practice');
     }
 
     showBasicExample() {
@@ -85,8 +79,8 @@ class AdditionExample extends Component {
                     <br />
                 </div>
                 <div>
-                <Link to="/addition/practice">
-                    <Button onClick={this.nextPage}>
+                <Link to="/student/addition/practice">
+                    <Button>
                         Next
                     </Button>
                 </Link>
@@ -95,9 +89,5 @@ class AdditionExample extends Component {
         );
     }
 };
-
-AdditionExample.propTypes = {
-    click: PropTypes.func.isRequired
-}
 
 export default AdditionExample;
