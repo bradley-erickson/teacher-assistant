@@ -220,15 +220,16 @@ app.post('/insertPerson', function(req, res, next) {
 
 app.post('/insertScore', function(req, res, next) {
     let result = true;
-    if(req.body.studentID && req.body.classID && req.body.total,req.body.correct,req.body.dateStamp){
+    if(req.body.studentID && req.body.classID && req.body.attempts && req.body.total && req.body.correct && req.body.dateStamp){
         
         var studentID = req.body.studentID;
         var classID = req.body.classID;
         var total = req.body.total;
         var correct = req.body.correct;
+        var attempts = req.body.attempts;
         var dateStamp = req.body.dateStamp;
         
-        let Score = new score({studentID: studentID, classID:classID,total:total,correct:correct,dateStamp:dateStamp});
+        let Score = new score({studentID: studentID, classID:classID, attempts:attempts, total:total,correct:correct,dateStamp:dateStamp});
         Score.save(function (err, Score) {
             if (err){
                 result = false;
