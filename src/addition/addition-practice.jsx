@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { names } from '../constants/names.js';
 import { items } from '../constants/items.js';
+import { insertScore } from '../helpers/database-helpers.js';
+import { getCurrentDate } from '../helpers/utils.js';
 
 function createQuestions(num, difficulty) {
     let questions = [];
@@ -17,6 +19,7 @@ class AdditionPractice extends Component {
     constructor(props) {
         super(props);
         this.checkAnswer = this.checkAnswer.bind(this);
+        this.submitScore = this.submitScore.bind(this);
         this.state = {
             questions: createQuestions(5, props.difficulty),
             correct: [false,false,false,false,false],
@@ -53,6 +56,14 @@ class AdditionPractice extends Component {
         correct[3] = this.checkQuestion(3);
         correct[4] = this.checkQuestion(4);
         this.setState({ correct, submissions: submissions+1 });
+    }
+
+    async submitScore() {
+        const { correct, submissions } = this.state;
+        const { user } = this.props;
+        const date = getCurrentDate();
+
+        return await insertScore(user.info._id, user.info.classID, submissions, correct, date);
     }
 
     renderQuestion(num, basic) {
@@ -93,7 +104,7 @@ class AdditionPractice extends Component {
                     Submit
                 </Button>
                 <Link to="/student/addition/submit">
-                    <Button disabled={!correct.every(v => v === true)}>
+                    <Button disabled={!correct.every(v => v === true)} onClick={this.submitScore}>
                         Next
                     </Button>
                 </Link>
@@ -108,7 +119,8 @@ class AdditionPractice extends Component {
 };
 
 AdditionPractice.propTypes = {
-    difficulty: PropTypes.number.isRequired
+    difficulty: PropTypes.number.isRequired,
+    user: PropTypes.object.isRequired
 }
 
 export default AdditionPractice;

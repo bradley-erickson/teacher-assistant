@@ -3,7 +3,7 @@ import { Switch, Route, Link } from 'react-router-dom';
 import { Button } from 'reactstrap';
 import Header from '../shared/header.js';
 import Dashboard from '../dashboard/dashboard.js';
-import Addition from '../addition/addition.js';
+import Addition from '../addition/addition.jsx';
 
 const Student = (props) => (
     <Switch>
