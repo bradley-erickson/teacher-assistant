@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import { Button, Input } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { names } from '../constants/names.js';
-import { items } from '../constants/items.js';
+import { names } from '../../constants/names.js';
+import { items } from '../../constants/items.js';
+import { insertScore } from '../../helpers/database-helpers.js';
+import { getCurrentDate } from '../../helpers/utils.js';
 
 function createQuestions(num, difficulty) {
     let questions = [];
@@ -19,8 +21,8 @@ function createQuestions(num, difficulty) {
 class SubtractionPractice extends Component {
     constructor(props) {
         super(props);
-        this.nextPage = this.nextPage.bind(this);
         this.checkAnswer = this.checkAnswer.bind(this);
+        this.submitScore = this.submitScore.bind(this);
         this.state = {
             questions: createQuestions(5, props.difficulty),
             correct: [false,false,false,false,false],
@@ -59,8 +61,14 @@ class SubtractionPractice extends Component {
         this.setState({ correct, submissions: submissions+1 });
     }
 
-    nextPage() {
-        this.props.click('end', this.state.submissions);
+    async submitScore() {
+        const { correct, submissions } = this.state;
+        const { user } = this.props;
+        const date = getCurrentDate();
+        const numCorrect = correct.filter(function(x){ return x === "true"; }).length;
+
+        const data = await insertScore(user.info._id, user.info.classID, submissions, numCorrect, date);
+        return data;
     }
 
     renderQuestion(num, basic) {
@@ -98,10 +106,10 @@ class SubtractionPractice extends Component {
                     {this.renderQuestion(4, false)}
                 </div>
                 <Button onClick={this.checkAnswer}>
-                    Submit
+                    Check Answers
                 </Button>
-                <Link to="/subtraction/end">
-                    <Button disabled={!correct.every(v => v === true)} onClick={this.nextPage}>
+                <Link to="/student/subtraction/submit">
+                    <Button onClick={this.submitScore}>
                         Next
                     </Button>
                 </Link>
@@ -116,8 +124,8 @@ class SubtractionPractice extends Component {
 };
 
 SubtractionPractice.propTypes = {
-    click: PropTypes.func.isRequired,
-    difficulty: PropTypes.number.isRequired
+    difficulty: PropTypes.number.isRequired,
+    user: PropTypes.object.isRequired
 }
 
 export default SubtractionPractice;

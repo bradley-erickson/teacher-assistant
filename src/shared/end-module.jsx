@@ -15,7 +15,7 @@ const EndModule = (props) => {
             </div>
             <Link to="/student">
                 <Button>
-                    <i className="fa fa-home" />
+                    <i className="fa fa-home mr-1" />
                     Menu
                 </Button>
             </Link>

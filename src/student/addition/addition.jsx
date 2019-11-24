@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { Switch, Route } from 'react-router-dom';
 import AdditionExample from './addition-example.jsx';
 import AdditionPractice from './addition-practice.jsx';
-import EndModule from '../shared/end-module.js';
-import { getClass } from '../helpers/database-helpers.js';
+import EndModule from '../../shared/end-module.jsx';
+import { getClass } from '../../helpers/database-helpers.js';
 
 class Addition extends Component {
     constructor(props) {
@@ -16,6 +16,7 @@ class Addition extends Component {
 
     async getDifficultyByClass(user) {
         const difficulty = await getClass(user.info.classID);
+        console.log(difficulty);
         return 11;
     }
 

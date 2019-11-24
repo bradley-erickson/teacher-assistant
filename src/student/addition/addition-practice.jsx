@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { Button, Input } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { names } from '../constants/names.js';
-import { items } from '../constants/items.js';
-import { insertScore } from '../helpers/database-helpers.js';
-import { getCurrentDate } from '../helpers/utils.js';
+import { names } from '../../constants/names.js';
+import { items } from '../../constants/items.js';
+import { insertScore } from '../../helpers/database-helpers.js';
+import { getCurrentDate } from '../../helpers/utils.js';
 
 function createQuestions(num, difficulty) {
     let questions = [];
@@ -62,8 +62,10 @@ class AdditionPractice extends Component {
         const { correct, submissions } = this.state;
         const { user } = this.props;
         const date = getCurrentDate();
+        const numCorrect = correct.filter(function(x){ return x === "true"; }).length;
 
-        return await insertScore(user.info._id, user.info.classID, submissions, correct, date);
+        const data = await insertScore(user.info._id, user.info.classID, submissions, numCorrect, date);
+        return data;
     }
 
     renderQuestion(num, basic) {
@@ -87,7 +89,7 @@ class AdditionPractice extends Component {
     }
 
     render() {
-        const { correct, submissions } = this.state;
+        const { submissions } = this.state;
         const submitted = submissions > 0;
         return (    
             <div>
@@ -101,10 +103,10 @@ class AdditionPractice extends Component {
                     {this.renderQuestion(4, false)}
                 </div>
                 <Button onClick={this.checkAnswer}>
-                    Submit
+                    Check Answers
                 </Button>
                 <Link to="/student/addition/submit">
-                    <Button disabled={!correct.every(v => v === true)} onClick={this.submitScore}>
+                    <Button onClick={this.submitScore}>
                         Next
                     </Button>
                 </Link>

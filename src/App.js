@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import Login from './login.js';
-import Student from './user/students.js';
+import Student from './student/students.jsx';
+import Teacher from './teacher/teachers.jsx';
 import './App.css';
 
 class App extends Component {
@@ -27,6 +28,7 @@ class App extends Component {
                 <Switch>
                     <Route exact path='/' component={() => <Login onStart={this.onStart}/>}/>
                     <Route path='/student' component={() => <Student user={user} />}/>
+                    <Route path='/teacher' component={() => <Teacher user={user} />}/>
                 </Switch>
             </main>
         );

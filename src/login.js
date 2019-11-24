@@ -3,7 +3,7 @@ import { Input, Button } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 import { checkLogin } from './helpers/database-helpers.js';
-import Header from './shared/header.js';
+import Header from './shared/header.jsx';
 
 class Login extends Component {
     constructor(props) {
