@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Button } from 'reactstrap';
 import { Link } from 'react-router-dom';
-import { names } from '../constants/names.js';
-import { items } from '../constants/items.js';
+import { names } from '../../constants/names.js';
+import { items } from '../../constants/items.js';
 
 function getTalliesText(num, ran1) {
     let text = `${num}  =  `;

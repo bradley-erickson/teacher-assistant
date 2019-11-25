@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import { Button } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import Header from '../shared/header.js';
-import StudentActions from './student-actions.js';
-import TeacherActions from './teacher-actions.js';
-import AdminActions from './admin-actions.js';
-import MessageSection from './message-block.js';
+import Header from '../shared/header.jsx';
+import StudentActions from '../student/student-actions.jsx';
+import TeacherActions from '../teacher/teacher-actions.jsx';
+import AdminActions from '../admin/admin-actions.jsx';
+import MessageSection from './message-block.jsx';
 
 class Dashboard extends Component {
     getContentsByType() {
@@ -30,6 +30,7 @@ class Dashboard extends Component {
                 <Header title="Main Menu" icon="fa-home" className="welcome-main-header">
                     <Link to="/">
                         <Button id="reset-button" className="reset-button">
+                            <i className="fa fa-sign-out mr-1" />
                             Reset
                         </Button>
                     </Link>
