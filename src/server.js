@@ -180,7 +180,7 @@ app.post('/insertPerson', function(req, res, next) {
                 });
             break;
             case "teacher":
-                let Teacher = new teacher({fname:fname,lname:lname,username:username,password:password});
+                let Teacher = new teacher({classID:classID,fname:fname,lname:lname,username:username,password:password});
                 Teacher.save(function (err, Teacher) {
                     if (err) {
                         result = false;
@@ -220,7 +220,7 @@ app.post('/insertPerson', function(req, res, next) {
 
 app.post('/insertScore', function(req, res, next) {
     let result = true;
-    if(req.body.studentID && req.body.classID && req.body.attempts && req.body.total && req.body.correct && req.body.dateStamp){
+    if(req.body.studentID && req.body.classID && req.body.module && req.body.attempts && req.body.total && req.body.correct && req.body.dateStamp){
         
         var studentID = req.body.studentID;
         var classID = req.body.classID;
@@ -228,8 +228,9 @@ app.post('/insertScore', function(req, res, next) {
         var correct = req.body.correct;
         var attempts = req.body.attempts;
         var dateStamp = req.body.dateStamp;
+        var module = req.body.module;
         
-        let Score = new score({studentID: studentID, classID:classID, attempts:attempts, total:total,correct:correct,dateStamp:dateStamp});
+        let Score = new score({studentID: studentID, classID:classID, module:module, attempts:attempts, total:total,correct:correct,dateStamp:dateStamp});
         Score.save(function (err, Score) {
             if (err){
                 result = false;

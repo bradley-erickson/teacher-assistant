@@ -20,11 +20,11 @@ export async function insertPerson(classID,type,fname,lname,uname,pwd){
     return result;
 }
 
-export async function insertScore(studentID,classID,total,attempts,correct,dateStamp){
+export async function insertScore(studentID,classID,module,total,attempts,correct,dateStamp){
     let result = [];
     await fetch('/insertScore', {method: 'post',
                         headers: {'Accept': 'application/json, text/plain, */*','Content-Type': 'application/json'},
-                        body: JSON.stringify({studentID: studentID, attempts:attempts, classID:classID,total:total,correct:correct,dateStamp:dateStamp})
+                        body: JSON.stringify({studentID: studentID, attempts:attempts, module:module, classID:classID,total:total,correct:correct,dateStamp:dateStamp})
                       })
         .then(res => res.json())
         .then(response => result.push(response));

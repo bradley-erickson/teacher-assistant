@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const TeacherActions = () => {
     return (
         <div>
-            <Link to="/student/scores">
+            <Link to="/teacher/scores">
                 <Button>
                     <i className="fa fa-star mr-1" />
                     View Scores

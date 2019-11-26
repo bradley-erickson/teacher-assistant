@@ -5,13 +5,13 @@ import Header from '../shared/header.jsx';
 import Dashboard from '../dashboard/dashboard.jsx';
 import ClassScores from './class-scores.jsx';
 
-const Student = (props) => (
+const Teacher = (props) => (
     <Switch>
-        <Route exact path='/student' component={() => <Dashboard user={props.user} />}/>
-        <Route path='/student/scores' component={() =>
+        <Route exact path='/teacher' component={() => <Dashboard user={props.user} />}/>
+        <Route path='/teacher/scores' component={() =>
             <div>
                 <Header title="Scores" icon="fa-home" className="welcome-main-header">
-                    <Link to="/student">
+                    <Link to="/teacher">
                         <Button>
                             Dashboard
                         </Button>
@@ -26,4 +26,4 @@ const Student = (props) => (
     </Switch>
 );
 
-export default Student;
+export default Teacher;
