@@ -14,7 +14,7 @@ const EndModule = (props) => {
                 You completed the {_.upperFirst(moduleType)} module!
             </div>
             <Link to="/student">
-                <Button>
+                <Button id="dash-button" className="dash-button">
                     <i className="fa fa-home mr-1" />
                     Menu
                 </Button>

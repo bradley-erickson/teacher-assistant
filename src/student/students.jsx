@@ -14,7 +14,7 @@ const Student = (props) => (
             <div>
                 <Header title="Scores" icon="fa-home" className="welcome-main-header">
                     <Link to="/student">
-                        <Button>
+                        <Button id="dash-button" className="dash-button">
                             Dashboard
                         </Button>
                     </Link>
@@ -26,7 +26,7 @@ const Student = (props) => (
             <div>
                 <Header title="Addition" icon="fa-home" className="welcome-main-header">
                     <Link to="/student">
-                        <Button>
+                        <Button id="dash-button" className="dash-button">
                             Dashboard
                         </Button>
                     </Link>
@@ -38,7 +38,7 @@ const Student = (props) => (
             <div>
                 <Header title="Subtraction" icon="fa-home" className="welcome-main-header">
                     <Link to="/student">
-                        <Button>
+                        <Button id="dash-button" className="dash-button">
                             Dashboard
                         </Button>
                     </Link>

@@ -61,7 +61,8 @@ class SubtractionExample extends Component {
                     <b className="body-header">Example:</b>
                     <br />
                     Click the button to show the steps for this basic example: 
-                    <Button onClick={this.showBasicExample}>
+                    <br />
+                    <Button id="steps-button" className="steps-button" onClick={this.showBasicExample}>
                         Show steps
                     </Button>
                     <br />
@@ -69,7 +70,8 @@ class SubtractionExample extends Component {
                     <div id="basicExample"></div>
                     <br />
                     Click the button to show the steps for this complex example: 
-                    <Button onClick={this.showComplexExample}>
+                    <br />
+                    <Button id="steps-button" className="steps-button" onClick={this.showComplexExample}>
                         Show steps
                     </Button>
                     <br />
@@ -81,7 +83,7 @@ class SubtractionExample extends Component {
                 </div>
                 <div>
                 <Link to="/student/subtraction/practice">
-                    <Button>
+                    <Button  id="next-button" className="next-button">
                         Next
                     </Button>
                 </Link>
