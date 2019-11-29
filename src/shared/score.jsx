@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const TScore = (props) => {
+const Score = (props) => {
     return (
         <div>
             <div>
-                {props.score.fname}
+                {props.score.studentID}
             </div>
             <div>
                 Module: {props.score.module}
@@ -23,8 +23,8 @@ const TScore = (props) => {
     );
 };
 
-TScore.propTypes = {
+Score.propTypes = {
     score: PropTypes.object,
 }
 
-export default TScore;
+export default Score;

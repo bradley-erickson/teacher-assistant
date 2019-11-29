@@ -1,65 +1,50 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { getStudentScores, getStudents } from '../helpers/database-helpers';
-import TScores from './classscores.jsx';
+import Score from '../shared/score.jsx';
 
 class ClassScores extends Component {
     constructor(props) {
         super(props);
-        this.fetchStudents = this.fetchStudents.bind(this);
+        this.fetchStudentScore = this.fetchStudentScore.bind(this);
         this.state = {
-            scores:[]
+            scores: [],
+            students: [],
+            ready: true
         }
     }
 
-    componentDidMount() {
-        this.fetchStudents();
+    async componentDidMount() {
+        const { classId } = this.props;
+        const response = await getStudents(classId);
+        this.setState({ students: response[0].students });
     }
 
-    async fetchStudents() {
-        const {user} = this.props;
-        const students = await getStudents(user.info.classID);
-        const scores = await fetchScores(students);
-        console.log(scores);
-        scores.forEach((n)=>{
-            console.log(n);
-        });
+    async fetchStudentScore(student) {
+        const score = await getStudentScores(student._id);
+        this.setState({ scores: this.state.scores.concat(score[0].scores) });
     }
 
 
     render() {
-
+        const { students, scores, ready } = this.state;
+        if (ready) {
+            let student = students.pop();
+            if (student) {
+                this.fetchStudentScore(student);
+            }
+        }
         return (
             <div>
                 Scores Below!
-                
+                {scores.map(score => (<Score key={score._id} score={score} />))}
             </div>
         );
     }
 }
 
-async function fetchScores(students){
-
-    let studentTotal = [];
-    let counter = 0;
-
-    students[0].students.forEach(async (n)=>{
-
-        let response = await getStudentScores(n._id);
-
-        let student = {
-            fname:n.fname,
-            scores:response[0]
-        };
-
-        studentTotal[counter++] = student;
-    });
-    console.log(studentTotal);
-    return studentTotal;
-}
-
 ClassScores.propTypes = {
-    user: PropTypes.object.isRequired
+    classId: PropTypes.number.isRequired
 }
 
 export default ClassScores;

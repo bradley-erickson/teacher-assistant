@@ -17,12 +17,9 @@ const Teacher = (props) => (
                         </Button>
                     </Link>
                 </Header>
-                <ClassScores user={props.user} />
+                <ClassScores classId={props.user.info.classID} />
             </div>
         }/>
-        {
-            //<Route path='/student/subtraction' component={() => <Addition />}/>
-        }
     </Switch>
 );
 
