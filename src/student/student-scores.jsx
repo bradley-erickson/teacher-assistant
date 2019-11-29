@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { getStudentScores } from '../helpers/database-helpers';
-import SScores from './studentscores.jsx';
+import Score from '../shared/score.jsx';
 
 class StudentScores extends Component {
     constructor(props) {
@@ -19,7 +19,7 @@ class StudentScores extends Component {
     async fetchScores() {
         const { user } = this.props;
         const response = await getStudentScores(user.info._id);
-        this.setState({scores: response[0].scores});
+        this.setState({ scores: response[0].scores });
     }
 
     render() {
@@ -27,7 +27,7 @@ class StudentScores extends Component {
         return (
             <div>
                 Scores Below!
-                {scores.map(score => (<SScores module={score.module} attempts={score.attempts} total={score.total} correct={score.correct} dateStamp={score.dateStamp} key={score._id} />))}
+                {scores.map(score => (<Score score={score} key={score._id} />))}
             </div>
         );
     }
