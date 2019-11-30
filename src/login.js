@@ -44,8 +44,8 @@ class Login extends Component {
                         Please Login
                     
                     
-                        <Input id="login-input" placeholder="Name" ref={this.usernameRef} onChange={e => this.setState({ username: e.target.value })} />
-                        <Input  id="login-input" placeholder="Password" ref={this.passwordRef} onChange={e => this.setState({ password: e.target.value })} />
+                        <Input className="login-input" placeholder="Name" ref={this.usernameRef} onChange={e => this.setState({ username: e.target.value })} />
+                        <Input  className="login-input" placeholder="Password" ref={this.passwordRef} onChange={e => this.setState({ password: e.target.value })} />
                     
                         <Button id="begin-button" className="begin-button"onClick={this.login}>
                             Begin
