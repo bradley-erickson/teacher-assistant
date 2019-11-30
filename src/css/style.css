@@ -6,7 +6,7 @@ body > #root > main {
 .default {
     background-color: #F69454;
     color: white;
-    font-size: 36px;
+    font-size: 30px;
     margin: 0 auto;
 }
 input{
@@ -20,7 +20,7 @@ form {
 .header {
     color: white;
     height: 10vh;
-    font-size: 36px;
+    font-size: 30px;
     display: flex;
     padding: 0px 10px 0px 10px;
     justify-content: space-between;
@@ -39,11 +39,11 @@ form {
 }
 
 .body-header {
-    font-size: 30px;
+    font-size: 24px;
 }
 
 .body-component {
-    font-size: 24px;
+    font-size: 18px;
 }
 
 .welcome-main-header {

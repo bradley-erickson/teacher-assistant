@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { getMessages } from '../helpers/database-helpers.js';
 import Message from './messages.jsx';
-import { lookup } from 'dns';
 
 class MessageSection extends Component {
     constructor(props) {

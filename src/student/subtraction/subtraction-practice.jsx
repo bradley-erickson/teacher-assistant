@@ -94,7 +94,7 @@ class SubtractionPractice extends Component {
     }
 
     render() {
-        const { correct, submissions } = this.state;
+        const { submissions } = this.state;
         const submitted = submissions > 0;
         return (    
             <div>
