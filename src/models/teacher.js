@@ -5,7 +5,8 @@ const teacherSchema = new Schema({
     fname:{ type:String, required:true, trim: true, minlength:1 },
     lname:{ type:String, required:true, trim: true, minlength:1 },
     username:{ type:String, required:true, trim: true, minlength:1 },
-    password:{ type:String, required:true, trim: true, minlength:1 }
+    password:{ type:String, required:true, trim: true, minlength:1 },
+    classID:{ type:Number, required:true, trim: true, minlength:1 }
 });
 
 const Teacher = mongoose.model('Teacher',teacherSchema);
