@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import { names } from '../../constants/names.js';
 import { items } from '../../constants/items.js';
 import { insertScore } from '../../helpers/database-helpers.js';
-import { getCurrentDate } from '../../helpers/utils.js';
 
 function createQuestions(num, difficulty) {
     let questions = [];
@@ -64,11 +63,9 @@ class SubtractionPractice extends Component {
     async submitScore() {
         const { correct, submissions } = this.state;
         const { user } = this.props;
-        const date = getCurrentDate();
-        const numCorrect = correct.filter(function(x){ return x === "true"; }).length;
+        let numCorrect = correct.filter(function(x){ return x }).length;
 
-        const data = await insertScore(user.info._id, user.info.classID, submissions, numCorrect, date);
-        return data;
+        insertScore(user.info._id, user.info.classID,"Math Subtraction",5,submissions, numCorrect, Date.now());
     }
 
     renderQuestion(num, basic) {
