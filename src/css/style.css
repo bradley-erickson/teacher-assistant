@@ -65,7 +65,11 @@ form {
 .color-correct-green {
     color: green;
 }
+#login-input{
+    width: 300px;
+    padding: 12px 20px;
 
+}
 #reset-button, #addition-button, #subtraction-button, #next-button, 
 #answers-button, #begin-button, #steps-button, #dash-button, #score-button{
     color:white;
