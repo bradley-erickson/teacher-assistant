@@ -82,11 +82,13 @@ class SubtractionPractice extends Component {
         }
         return (
             <div>
-                {text}
-                <Input onChange={e => this.updateQuestionAnswer(num, e.target.value)}/>
-                {submitted &&
-                    <i className={correct[num] ? "fa fa-check color-correct-green" : "fa fa-times color-wrong-red"} />
-                }
+                <form>
+                    {text} 
+                    <Input style={{width:"150px"}} onChange={e => this.updateQuestionAnswer(num, e.target.value)}/>
+                    {submitted &&
+                        <i className={correct[num] ? "fa fa-check color-correct-green" : "fa fa-times color-wrong-red"} />
+                    }
+                </form>
             </div>
         );
     }
@@ -105,11 +107,11 @@ class SubtractionPractice extends Component {
                     {this.renderQuestion(3, true)}
                     {this.renderQuestion(4, false)}
                 </div>
-                <Button onClick={this.checkAnswer}>
+                <Button id="answers-button" className="answers-button" onClick={this.checkAnswer}>
                     Check Answers
                 </Button>
                 <Link to="/student/subtraction/submit">
-                    <Button onClick={this.submitScore}>
+                    <Button id="next-button" className="next-button" onClick={this.submitScore}>
                         Next
                     </Button>
                 </Link>

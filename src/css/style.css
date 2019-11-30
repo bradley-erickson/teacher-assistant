@@ -1,5 +1,6 @@
 body > #root > main {
     height: 100vh;
+    text-align: center;
 }
 
 .default {
@@ -7,6 +8,13 @@ body > #root > main {
     color: white;
     font-size: 36px;
     margin: 0 auto;
+}
+input{
+    width:150px;
+}
+
+form {
+    display: inline-block;
 }
 
 .header {
@@ -57,8 +65,13 @@ body > #root > main {
 .color-correct-green {
     color: green;
 }
+.login-input{
+    width: 300px;
+    padding: 12px 20px;
 
-#reset-button, #addition-button, #subtraction-button{
+}
+#reset-button, #addition-button, #subtraction-button, #next-button, 
+#answers-button, #begin-button, #steps-button, #dash-button, #score-button{
     color:white;
     background-color: #739F3D;
     border: 2px solid white;

@@ -12,7 +12,7 @@ const Teacher = (props) => (
             <div>
                 <Header title="Scores" icon="fa-home" className="welcome-main-header">
                     <Link to="/teacher">
-                        <Button>
+                        <Button id="dash-button" className="dash-button">
                             Dashboard
                         </Button>
                     </Link>

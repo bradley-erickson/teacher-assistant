@@ -79,11 +79,13 @@ class AdditionPractice extends Component {
         }
         return (
             <div>
-                {text}
-                <Input onChange={e => this.updateQuestionAnswer(num, e.target.value)}/>
-                {submitted &&
-                    <i className={correct[num] ? "fa fa-check color-correct-green" : "fa fa-times color-wrong-red"} />
-                }
+                <form>
+                    {text} 
+                    <Input onChange={e => this.updateQuestionAnswer(num, e.target.value)}/>
+                    {submitted &&
+                        <i className={correct[num] ? "fa fa-check color-correct-green" : "fa fa-times color-wrong-red"} />
+                    }
+                </form>
             </div>
         );
     }
@@ -95,18 +97,18 @@ class AdditionPractice extends Component {
             <div>
                 <div>
                     <b className="body-header">Practice:</b>
-                    <br />
+                    <br/>
                     {this.renderQuestion(0, true)}
                     {this.renderQuestion(1, true)}
                     {this.renderQuestion(2, true)}
                     {this.renderQuestion(3, true)}
                     {this.renderQuestion(4, false)}
                 </div>
-                <Button onClick={this.checkAnswer}>
+                <Button id="answers-button" className="answers-button"onClick={this.checkAnswer}>
                     Check Answers
                 </Button>
                 <Link to="/student/addition/submit">
-                    <Button onClick={this.submitScore}>
+                    <Button id="next-button" className="next-button" onClick={this.submitScore}>
                         Next
                     </Button>
                 </Link>

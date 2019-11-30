@@ -6,7 +6,7 @@ const TeacherActions = () => {
     return (
         <div>
             <Link to="/teacher/scores">
-                <Button>
+                <Button id="score-button" className="score-button">
                     <i className="fa fa-star mr-1" />
                     View Scores
                 </Button>
