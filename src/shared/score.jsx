@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const Score = (props) => {
     return (
-        <div>
+        <div class="score">
             {props.score.studentID}
             <br />
             Module: {props.score.module}
