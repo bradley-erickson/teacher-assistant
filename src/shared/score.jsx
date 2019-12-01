@@ -8,11 +8,11 @@ const Score = (props) => {
             <br />
             Module: {props.score.module}
             <br />
-            Score: {props.score.correct}/{props.total}
+            Score: {props.score.correct}/{props.score.total}
             <br />
             Attempts: {props.score.attempts}
             <br />
-            Date: {props.score.dateStamp}           
+            Date: {props.score.dateStamp}
         </div>
     );
 };
