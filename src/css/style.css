@@ -3,6 +3,10 @@ body > #root > main {
     text-align: center;
 }
 
+.score {
+    font-size:15px;
+}
+
 .default {
     background-color: #F69454;
     color: white;
